@@ -1,0 +1,23 @@
+[Table("Users")]
+public class User
+{
+    [Key, Identity]
+    public int Id { get; set; }
+
+    public string ReadOnly => "test"; // because don't have set
+
+    public string Name { get; set; }
+
+    public int AddressId { get; set; }
+
+    [LeftJoin("Cars", "Id", "UserId")]
+    public List<Car> Cars { get; set; }
+
+    [LeftJoin("Addresses", "AddressId", "Id")]
+    public Address Address { get; set; }
+
+    [Status, Deleted]
+    public bool Deleted { get; set; }
+
+    [UpdatedAt]
+    public DateTime? UpdatedAt { get; set; }
